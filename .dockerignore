@@ -1,0 +1,6 @@
+.pylintrc
+.git
+.gitignore
+README.md
+Pipfile
+helm-charts
