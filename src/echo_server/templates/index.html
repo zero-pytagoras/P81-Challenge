@@ -1,0 +1,16 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    {% if title %}
+        {{ title }} 
+    {% else %}
+        Welcome to Challenge
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>Hello Dear User</h1>
+    {{input}}<br>
+    {{ip}}<br>
+    {{location}}<br>
+{% endblock %}
