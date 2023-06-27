@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "p81-challenge-app.fullname" . }}
+  name: {{ include "echo-server.fullname" . }}
   labels:
-    {{- include "p81-challenge-app.labels" . | nindent 4 }}
+    {{- include "echo-server.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "p81-challenge-app.selectorLabels" . | nindent 6 }}
+      {{- include "echo-server.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "p81-challenge-app.selectorLabels" . | nindent 8 }}
+        {{- include "echo-server.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "p81-challenge-app.serviceAccountName" . }}
+      serviceAccountName: {{ include "echo-server.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

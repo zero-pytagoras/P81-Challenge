@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "p81-challenge-app.name" -}}
+{{- define "echo-server.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "p81-challenge-app.fullname" -}}
+{{- define "echo-server.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "p81-challenge-app.chart" -}}
+{{- define "echo-server.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "p81-challenge-app.labels" -}}
-helm.sh/chart: {{ include "p81-challenge-app.chart" . }}
-{{ include "p81-challenge-app.selectorLabels" . }}
+{{- define "echo-server.labels" -}}
+helm.sh/chart: {{ include "echo-server.chart" . }}
+{{ include "echo-server.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "p81-challenge-app.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "p81-challenge-app.name" . }}
+{{- define "echo-server.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "echo-server.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "p81-challenge-app.serviceAccountName" -}}
+{{- define "echo-server.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "p81-challenge-app.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "echo-server.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
