@@ -6,4 +6,4 @@ WORKDIR /home/geo-user
 COPY . /home/geo-user/
 RUN pip install -r /home/geo-user/src/requirements.txt
 EXPOSE 8080
-CMD ["gunicorn", "--config", "/home/geo-user/src/gunicorn_conf.py", "src.echo_server:app"]
+CMD ["gunicorn", "--config", "/home/geo-user/gunicorn_conf.py", "src.echo_server:app"]
