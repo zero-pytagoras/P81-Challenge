@@ -16,8 +16,7 @@ ENV= get_env()
 @app.route('/<user_input>')
 @app.route('/index/<user_input>')
 @app.route('/index.html/<user_input>')
-def index(user_input='No Input Provided: please pass input via URL: \
-            e.g http://URL-TO-ECHO-SERVER/USER-INPUT in your browser'):
+def index(user_input='No Input Provided: please pass input via URL: e.g http://URL-TO-ECHO-SERVER/USER-INPUT in your browser'):
     ip_data = simple_ip.get_geoip_data()
     return render_template('/index.html', title='P81', ip=ip_data['ip'],\
                         location=ip_data['location'], env=ENV, user_input=user_input)
